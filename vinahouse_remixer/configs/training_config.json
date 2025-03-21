@@ -1,0 +1,30 @@
+{
+    "sample_rate": 44100,
+    "n_fft": 2048,
+    "hop_length": 512,
+    "n_mels": 80,
+    "segment_duration": 5.0,
+    
+    "original_train_dir": "data/original/train",
+    "vinahouse_train_dir": "data/vinahouse/train",
+    "original_val_dir": "data/original/val",
+    "vinahouse_val_dir": "data/vinahouse/val",
+    
+    "paired_data": false,
+    "max_train_samples": 1000,
+    "max_val_samples": 200,
+    
+    "latent_dim": 64,
+    "time_steps": 1000,
+    "beta_schedule": "linear",
+    "beta_start": 1e-4,
+    "beta_end": 2e-2,
+    
+    "batch_size": 16,
+    "learning_rate": 1e-4,
+    "num_epochs": 100,
+    "checkpoint_dir": "models/checkpoints",
+    "save_every": 5,
+    
+    "device": "cuda"
+}
