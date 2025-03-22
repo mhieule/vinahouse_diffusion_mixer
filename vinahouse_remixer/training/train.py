@@ -51,8 +51,12 @@ class VinahouseDataset(Dataset):
         self.preprocessor = preprocessor or AudioPreprocessor()
         
         # Get file lists
-        self.original_files = sorted(glob.glob(os.path.join(original_dir, "*.wav")))
-        self.vinahouse_files = sorted(glob.glob(os.path.join(vinahouse_dir, "*.wav")))
+        self.original_files = sorted(glob.glob(os.path.join(original_dir, "*.mp3")))
+        self.vinahouse_files = sorted(glob.glob(os.path.join(vinahouse_dir, "*.mp3")))
+        print("DEBUG: Original directory:", original_dir)
+        print("DEBUG: Vinahouse directory:", vinahouse_dir)
+        print("DEBUG: Original files (up to 5):", self.original_files[:5])
+        print("DEBUG: Vinahouse files (up to 5):", self.vinahouse_files[:5])
         
         # Limit number of samples if specified
         if max_samples is not None:
@@ -164,6 +168,7 @@ class DiffusionTrainer:
             shuffle=True, 
             num_workers=4
         )
+        print("DEBUG: Total samples in train dataset:", len(train_dataset))
         
         if val_dataset is not None:
             self.val_loader = DataLoader(

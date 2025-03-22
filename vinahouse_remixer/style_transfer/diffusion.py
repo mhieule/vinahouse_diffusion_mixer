@@ -183,8 +183,8 @@ class DiffusionModel(nn.Module):
         if noise is None:
             noise = torch.randn_like(x_start)
             
-        sqrt_alphas_cumprod_t = self.sqrt_alphas_cumprod[t].view(-1, 1, 1, 1)
-        sqrt_one_minus_alphas_cumprod_t = self.sqrt_one_minus_alphas_cumprod[t].view(-1, 1, 1, 1)
+        sqrt_alphas_cumprod_t = self.sqrt_alphas_cumprod.to(t.device)[t].view(-1, 1, 1, 1)
+        sqrt_one_minus_alphas_cumprod_t = self.sqrt_one_minus_alphas_cumprod.to(t.device)[t].view(-1, 1, 1, 1)
         
         return sqrt_alphas_cumprod_t * x_start + sqrt_one_minus_alphas_cumprod_t * noise
     
@@ -199,8 +199,8 @@ class DiffusionModel(nn.Module):
         Returns:
             Predicted noise
         """
-        # Create time embedding
-        t_emb = self.time_embedding(t)
+        # Create time embedding and expand it to match spatial dimensions of x_t
+        t_emb = self.time_embedding(t).expand(x_t.size(0), 1, x_t.size(2), x_t.size(3))
         
         # Concatenate along channel dimension
         x_input = torch.cat([x_t, t_emb], dim=1)

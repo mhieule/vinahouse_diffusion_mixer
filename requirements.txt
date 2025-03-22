@@ -1,0 +1,31 @@
+# Requirements for Vinahouse Remix Model
+
+# Core dependencies
+numpy>=1.20.0
+scipy>=1.7.0
+torch>=1.10.0
+torchaudio>=0.10.0
+librosa>=0.9.0
+soundfile>=0.10.3
+matplotlib>=3.5.0
+tqdm>=4.62.0
+
+# Audio processing
+pyrubberband>=0.3.0  # For high-quality time stretching
+madmom>=0.16.1  # For beat detection and rhythm analysis
+
+# Diffusion model dependencies
+diffusers>=0.12.0  # For diffusion model components
+transformers>=4.18.0  # For text conditioning (if needed)
+
+# Utilities
+pyyaml>=6.0  # For configuration handling
+tensorboard>=2.8.0  # For training visualization
+scikit-learn>=1.0.0  # For evaluation metrics
+
+# Optional dependencies
+jupyter>=1.0.0  # For notebook examples
+ipywidgets>=7.7.0  # For interactive examples
+
+# Missing
+librosa
